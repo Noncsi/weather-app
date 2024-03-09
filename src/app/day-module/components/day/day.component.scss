@@ -1,0 +1,55 @@
+:host {
+  &:first-of-type {
+    grid-column: 4;
+  }
+}
+
+.day {
+  padding: 15px;
+  text-align: center;
+  border-radius: 50px;
+  background-color: #18162cc9;
+  height: 25rem;
+
+  .day-of-week {
+    font-size: 1.25rem;
+    // text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 42px #e91e63, 0 0 82px #e91e63,
+    //   0 0 92px #e91e63, 0 0 102px #e91e63;
+  }
+
+  .temps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 11px;
+
+    .temp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      position: relative;
+
+      &.max {
+        background-color: #b33095;
+        // box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 42px #e91e63,
+        //   0 0 82px #e91e63, 0 0 92px #e91e63, 0 0 102px #e91e63;
+      }
+
+      &.min {
+        background-color: #5433aa;
+        // box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 42px #e91e63,
+        //   0 0 82px #e91e63, 0 0 92px #e91e63, 0 0 102px #e91e63;
+      }
+    }
+  }
+}
+
+.forecast-icon {
+  margin-top: 11px;
+  height: 50px;
+  width: 50px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(109deg) brightness(104%) contrast(103%);
+}

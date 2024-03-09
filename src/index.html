@@ -1,13 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>WeatherApp</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>WeatherApp</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="mat-typography">
+    <app-root></app-root>
+  </body>
+  <script
+    type="module"
+    src="https://unpkg.com/@splinetool/viewer@1.0.59/build/spline-viewer.js"
+  ></script>
+
+  <script>
+    window.onload = function () {
+      var splineElement = document.querySelectorAll("spline-viewer");
+
+      for (let pas = 0; pas < splineElement.length; pas++) {
+        var shadowRoot = splineElement[pas].shadowRoot;
+        shadowRoot.querySelector("#logo").remove();
+      }
+    };
+  </script>
 </html>

@@ -1,0 +1,24 @@
+<div
+  *ngIf="{
+    weatherData: weatherData$ | async,
+    todaysWeather: todaysWeather$ | async,
+  } as vars; else elseBlock"
+  class="container"
+>
+  <div *ngIf="vars.todaysWeather" class="current-day">
+    <div class="current-degree">
+      <span class="temp">{{ vars.todaysWeather.temperature }}</span>
+      <span class="unit">°C</span>
+    </div>
+    <h2>{{ vars.todaysWeather.shortDescription }}</h2>
+  </div>
+
+  <app-day
+    *ngFor="let day of vars.weatherData?.dailyWeathers"
+    [day]="day"
+  ></app-day>
+</div>
+
+<ng-template #elseBlock>
+  <div class="no-location-message">Select a location to get forecast.</div>
+</ng-template>

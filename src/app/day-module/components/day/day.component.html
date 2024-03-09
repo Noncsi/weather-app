@@ -1,0 +1,9 @@
+<div *ngIf="day" class="day">
+  <span class="day-of-week">{{ day.dateTime | date : "E" }}</span>
+  <!-- <app-spline></app-spline> -->
+  <img class="forecast-icon" [src]="iconPath" />
+  <div class="temps">
+    <span class="temp max" [style]="max">{{ day.temperatureMax }}</span>
+    <span class="temp min" [style]="min">{{ day.temperatureMin }}</span>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.container {
+  margin-top: 8rem;
+  display: grid;
+  gap: 5px;
+
+  grid-template-columns:
+    [left-margin] auto [now] 15rem [margin] repeat(10, 5rem) [symmetry-col] 15rem [right-margin] auto [end];
+
+  .current-day {
+    text-align: center;
+    grid-column: now;
+
+    .current-degree {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+
+      .temp {
+        font-size: 5rem;
+        margin: 5rem 0 5rem 0;
+        text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 42px #e91e63,
+          0 0 82px #e91e63, 0 0 92px #e91e63, 0 0 102px #e91e63;
+      }
+
+      .unit {
+        font-size: 2rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+      }
+    }
+  }
+
+  .days {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+  }
+}
+
+.no-location-message {
+  text-align: center;
+  font-size: 2rem;
+}
