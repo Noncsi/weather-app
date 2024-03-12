@@ -22,7 +22,6 @@ export class DashboardComponent {
             (dailyWeather) => dailyWeather.temperatureMax
           )
         );
-        console.log(baseValue);
         return {
           ...weatherData,
           dailyWeathers: weatherData.dailyWeathers.map((dailyWeather) => ({

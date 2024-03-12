@@ -1,23 +1,28 @@
-<div
+<app-progress-spinner></app-progress-spinner>
+
+<ng-container
   *ngIf="{
     weatherData: weatherData$ | async,
     todaysWeather: todaysWeather$ | async,
-  } as vars; else elseBlock"
-  class="container"
+  } as vars"
 >
-  <div *ngIf="vars.todaysWeather" class="current-day">
-    <div class="current-degree">
-      <span class="temp">{{ vars.todaysWeather.temperature }}</span>
-      <span class="unit">°C</span>
-    </div>
-    <h2>{{ vars.todaysWeather.shortDescription }}</h2>
-  </div>
+  <ng-container *ngIf="vars.todaysWeather; else elseBlock">
+    <div class="container">
+      <div class="current-day">
+        <div class="current-degree">
+          <span class="temp">{{ vars.todaysWeather.temperature }}</span>
+          <span class="unit">°C</span>
+        </div>
+        <h2>{{ vars.todaysWeather.shortDescription }}</h2>
+      </div>
 
-  <app-day
-    *ngFor="let day of vars.weatherData?.dailyWeathers"
-    [day]="day"
-  ></app-day>
-</div>
+      <app-day
+        *ngFor="let day of vars.weatherData?.dailyWeathers"
+        [day]="day"
+      ></app-day>
+    </div>
+  </ng-container>
+</ng-container>
 
 <ng-template #elseBlock>
   <div class="no-location-message">Select a location to get forecast.</div>

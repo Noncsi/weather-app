@@ -3,16 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from '../app-routing.module';
-import { AppComponent } from '../app.component';
-import { DayComponent } from '../day-module/components/day/day.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgStyle } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DayModule } from '../day-module/day.module';
+import { ProgressSpinnerModule } from '../progress-spinner-module/progress-spinner.module';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, DayComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgStyle],
-  bootstrap: [AppComponent],
+  declarations: [DashboardComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgStyle,
+    ProgressSpinnerModule,
+    DayModule,
+  ],
   providers: [provideAnimationsAsync()],
+  exports: [DashboardComponent],
 })
 export class DashboardModule {}

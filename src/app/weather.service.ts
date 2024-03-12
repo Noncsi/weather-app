@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, map, shareReplay, tap } from 'rxjs';
+import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
 import { WeatherData, WeatherDataFromApi, Interval } from './weather';
 import { HttpClient } from '@angular/common/http';
 import { weatherMapper } from './utils';
