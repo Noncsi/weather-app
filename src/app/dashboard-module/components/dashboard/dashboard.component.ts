@@ -1,9 +1,10 @@
 import { Observable, Subject, finalize, map, switchMap, tap } from 'rxjs';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { WeatherData, DailyWeather } from '../../../weather';
-import { WeatherService } from '../../../weather.service';
+import { WeatherService } from '../../../services/weather.service';
 import { TemperaturePosition } from '../../../day-module/models/temperature-position';
 import { ProgressSpinnerService } from '../../../progress-spinner-module/progress-spinner.service';
+import { DailyWeather } from '../../../models/daily-weather';
+import { WeatherData } from '../../../models/weather-data';
 
 @Component({
   selector: 'app-dashboard',

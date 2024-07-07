@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
-import { WeatherData, WeatherDataFromApi, Interval } from './weather';
 import { HttpClient } from '@angular/common/http';
-import { weatherMapper } from './utils';
+import { weatherMapper } from '../utils';
+import { Interval } from '../models/interval';
+import { WeatherData } from '../models/weather-data';
+import { WeatherDataFromApi } from '../models/weather-data-from-api';
 
 @Injectable({
   providedIn: 'root',

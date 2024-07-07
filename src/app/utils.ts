@@ -1,4 +1,5 @@
-import { WeatherData, WeatherDataFromApi } from './weather';
+import { WeatherData } from './models/weather-data';
+import { WeatherDataFromApi } from './models/weather-data-from-api';
 
 export function weatherMapper(data: WeatherDataFromApi): WeatherData {
   return {

@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { DailyWeather } from '../../../weather';
+import { DailyWeather } from '../../../models/daily-weather';
 
 @Component({
   selector: 'app-day',
