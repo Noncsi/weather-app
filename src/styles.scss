@@ -1,9 +1,9 @@
 html,
 body {
   height: 100%;
-  background-image: url("./assets/background.png");
-  background-size: 120rem;
-  color: #efefef;
+  color: #272727;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(206, 206, 217, 1) 40%, rgba(122, 123, 155, 1) 100%), linear-gradient(315deg, rgba(0, 0, 0, 0.2) 0%, rgba(153, 188, 255, 0.2) 57%);
 }
 
 body {

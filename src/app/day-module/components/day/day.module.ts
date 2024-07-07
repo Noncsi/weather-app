@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DayComponent } from './components/day/day.component';
+import { DayComponent } from './day.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

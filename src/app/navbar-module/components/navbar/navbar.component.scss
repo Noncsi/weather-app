@@ -1,21 +1,11 @@
 :host {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 5px;
     padding-top: 1rem;
 
-    h1 {
+    .logo {
+        width: 100px;
         grid-column: 2;
     }
-}
-
-mat-form-field {
-    grid-column-start: 3;
-    grid-column-end: 5;
-
-    input {}
-}
-
-button {
-    max-width: 100px;
 }

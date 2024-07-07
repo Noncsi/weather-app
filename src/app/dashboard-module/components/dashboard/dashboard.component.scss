@@ -41,3 +41,14 @@
   text-align: center;
   font-size: 2rem;
 }
+
+mat-form-field {
+  grid-column-start: 3;
+  grid-column-end: 5;
+
+  input {}
+}
+
+button {
+  max-width: 100px;
+}

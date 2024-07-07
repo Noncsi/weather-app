@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgStyle } from '@angular/common';
-import { SplineModule } from './spline-module/spline.module';
 import { NavbarModule } from './navbar-module/navbar.module';
 import { DashboardModule } from './dashboard-module/dashboard.module';
 
@@ -17,7 +16,6 @@ import { DashboardModule } from './dashboard-module/dashboard.module';
     HttpClientModule,
     NgStyle,
     NavbarModule,
-    SplineModule,
     DashboardModule,
   ],
   bootstrap: [AppComponent],
