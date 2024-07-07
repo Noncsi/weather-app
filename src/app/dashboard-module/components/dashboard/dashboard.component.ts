@@ -1,9 +1,13 @@
-import { Observable, Subject, finalize, map, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { WeatherService } from '../../../services/weather.service';
-import { TemperaturePosition } from '../../../day-module/models/temperature-position';
-import { ProgressSpinnerService } from '../../../progress-spinner-module/progress-spinner.service';
 import { DailyWeather } from '../../../models/daily-weather';
+import { select, Store } from '@ngrx/store';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  selectTodaysWeatherData,
+  selectWeatherData,
+} from '../../../state/selectors';
+import { getWeatherData } from '../../../state/actions';
 import { WeatherData } from '../../../models/weather-data';
 
 @Component({
@@ -15,51 +19,20 @@ import { WeatherData } from '../../../models/weather-data';
 export class DashboardComponent {
   weatherData$: Observable<WeatherData>;
   todaysWeather$: Observable<DailyWeather>;
-  tempPosition$: Observable<TemperaturePosition[]>;
-  private _locationSubject = new Subject<string>();
 
-  shouldLoad$ = this._locationSubject.asObservable().pipe(
-    tap(() => this.progressSpinnerService.toggleSpinnerVisibility(true)),
-    switchMap((location: string) =>
-      this.weatherService
-        .getWeatherInfo(location)
-        .pipe(
-          finalize(() =>
-            this.progressSpinnerService.toggleSpinnerVisibility(false)
-          )
-        )
-    )
-  );
-
-  constructor(
-    private weatherService: WeatherService,
-    private progressSpinnerService: ProgressSpinnerService
-  ) {
-    this.weatherData$ = this.weatherService.weatherInfo$.pipe(
-      map((weatherData) => {
-        const baseValue = Math.max(
-          ...weatherData.dailyWeathers.map(
-            (dailyWeather) => dailyWeather.temperatureMax
-          )
-        );
-        return {
-          ...weatherData,
-          dailyWeathers: weatherData.dailyWeathers.map((dailyWeather) => ({
-            ...dailyWeather,
-            tempPosition: {
-              max: (baseValue - dailyWeather.temperatureMax) * 11,
-              min: (baseValue - dailyWeather.temperatureMin) * 11,
-            },
-          })),
-        };
-      })
+  constructor(private store: Store) {
+    this.weatherData$ = this.store.pipe(
+      select(selectWeatherData),
+      takeUntilDestroyed()
     );
-    this.todaysWeather$ = this.weatherData$.pipe(
-      map((weatherData) => weatherData.dailyWeathers[0])
+
+    this.todaysWeather$ = this.store.pipe(
+      select(selectTodaysWeatherData),
+      takeUntilDestroyed()
     );
   }
 
   submit(location: string) {
-    this._locationSubject.next(location);
+    this.store.dispatch(getWeatherData({ location }));
   }
 }

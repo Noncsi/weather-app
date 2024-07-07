@@ -1,3 +1,4 @@
+import { WeatherData } from './models/weather-data';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
@@ -10,6 +11,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NgStyle } from '@angular/common';
 import { NavbarModule } from './navbar-module/navbar.module';
 import { DashboardModule } from './dashboard-module/dashboard.module';
+import { StoreModule } from '@ngrx/store';
+import { weatherReducer } from './state/reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { WeatherDataEffects } from './state/effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +25,8 @@ import { DashboardModule } from './dashboard-module/dashboard.module';
     NgStyle,
     NavbarModule,
     DashboardModule,
+    StoreModule.forRoot({ weatherData: weatherReducer }),
+    EffectsModule.forRoot([WeatherDataEffects]),
   ],
   providers: [
     provideAnimationsAsync(),

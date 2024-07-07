@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { weatherMapper } from '../utils';
 import { Interval } from '../models/interval';
@@ -10,8 +10,6 @@ import { WeatherDataFromApi } from '../models/weather-data-from-api';
   providedIn: 'root',
 })
 export class WeatherService {
-  private weatherInfoSubject$ = new Subject<WeatherData>();
-  weatherInfo$ = this.weatherInfoSubject$.asObservable();
   constructor(private http: HttpClient) {}
 
   getWeatherInfo(
@@ -26,7 +24,6 @@ export class WeatherService {
       .pipe(
         // catchError(),
         map((result) => weatherMapper(result)),
-        tap((weatherData) => this.weatherInfoSubject$.next(weatherData)),
         shareReplay()
       );
   }

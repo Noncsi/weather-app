@@ -1,12 +1,12 @@
 <app-progress-spinner></app-progress-spinner>
 
-<ng-container *ngIf="{ shouldLoad: shouldLoad$ | async } as vars">
-  <mat-form-field><input matInput #location /></mat-form-field>
+<!-- <ng-container *ngIf="{ shouldLoad: shouldLoad$ | async } as vars"> -->
+<mat-form-field><input matInput #location /></mat-form-field>
 
-  <button mat-raised-button submit="submit" (click)="submit(location.value)">
-    Go
-  </button>
-</ng-container>
+<button mat-raised-button submit="submit" (click)="submit(location.value)">
+  Go
+</button>
+<!-- </ng-container> -->
 
 <ng-container
   *ngIf="{
