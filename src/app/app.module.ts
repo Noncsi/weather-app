@@ -25,7 +25,9 @@ import { WeatherDataEffects } from './state/effect';
     NgStyle,
     NavbarModule,
     DashboardModule,
-    StoreModule.forRoot({ weatherData: weatherReducer }),
+    StoreModule.forRoot({
+      weatherData: weatherReducer,
+    }),
     EffectsModule.forRoot([WeatherDataEffects]),
   ],
   providers: [

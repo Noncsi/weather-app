@@ -1,9 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { getWeatherDataSuccess } from './actions';
+import {
+  getWeatherDataSuccess,
+  hideProgressSpinner,
+  showProgressSpinner,
+} from './actions';
 import { AppState } from './selectors';
 
 export const initialState: AppState = {
   weatherData: { location: '', dailyWeathers: [] },
+  isLoading: false,
 };
 
 export const weatherReducer = createReducer(
@@ -27,5 +32,11 @@ export const weatherReducer = createReducer(
         })),
       },
     };
+  }),
+  on(showProgressSpinner, (state) => {
+    return { ...state, isLoading: true };
+  }),
+  on(hideProgressSpinner, (state) => {
+    return { ...state, isLoading: false };
   })
 );

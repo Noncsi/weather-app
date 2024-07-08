@@ -1,9 +1,13 @@
 import { WeatherService } from './../services/weather.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { getWeatherData, getWeatherDataSuccess } from './actions';
-import { WeatherData } from '../models/weather-data';
+import { map, switchMap } from 'rxjs/operators';
+import {
+  getWeatherData,
+  getWeatherDataSuccess,
+  hideProgressSpinner,
+  showProgressSpinner,
+} from './actions';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherDataEffects {
@@ -20,6 +24,20 @@ export class WeatherDataEffects {
           .getWeatherInfo(action.location)
           .pipe(map((result) => getWeatherDataSuccess({ result })))
       )
+    )
+  );
+
+  startLoading$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getWeatherData),
+      map(() => showProgressSpinner())
+    )
+  );
+
+  hideLoading$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getWeatherDataSuccess),
+      map(() => hideProgressSpinner())
     )
   );
 }

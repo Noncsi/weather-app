@@ -10,3 +10,7 @@ export const getWeatherDataSuccess = createAction(
   'getWeatherDataSuccess',
   props<{ result: WeatherData }>()
 );
+
+export const showProgressSpinner = createAction('showProgressSpinner');
+
+export const hideProgressSpinner = createAction('hideProgressSpinner');

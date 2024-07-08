@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { LocationModule } from '../location-module/location.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -23,12 +24,12 @@ import { LocationModule } from '../location-module/location.module';
     BrowserModule,
     AppRoutingModule,
     NgStyle,
-    ProgressSpinnerModule,
     DayModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     LocationModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     provideAnimationsAsync(),
