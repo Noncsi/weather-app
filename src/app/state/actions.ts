@@ -14,3 +14,8 @@ export const getWeatherDataSuccess = createAction(
 export const showProgressSpinner = createAction('showProgressSpinner');
 
 export const hideProgressSpinner = createAction('hideProgressSpinner');
+
+export const showErrorMessage = createAction(
+  'showErrorMessage',
+  props<{ errorMessage: string }>()
+);

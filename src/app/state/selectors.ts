@@ -4,6 +4,7 @@ import { WeatherData } from '../models/weather-data';
 export interface AppState {
   weatherData: WeatherData;
   isLoading: boolean;
+  errorMessage: string;
 }
 
 export const selectState = createFeatureSelector<AppState>('weatherData');
@@ -21,4 +22,9 @@ export const selectTodaysWeatherData = createSelector(
 export const selectIsLoading = createSelector(
   selectState,
   (state: AppState) => state?.isLoading
+);
+
+export const selectErrorMessage = createSelector(
+  selectState,
+  (state: AppState) => state?.errorMessage
 );

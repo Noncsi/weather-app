@@ -1,13 +1,15 @@
 import { WeatherService } from './../services/weather.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   getWeatherData,
   getWeatherDataSuccess,
   hideProgressSpinner,
+  showErrorMessage,
   showProgressSpinner,
 } from './actions';
+import { of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherDataEffects {
@@ -20,9 +22,16 @@ export class WeatherDataEffects {
     this.actions$.pipe(
       ofType(getWeatherData),
       switchMap((action) =>
-        this.weatherService
-          .getWeatherInfo(action.location)
-          .pipe(map((result) => getWeatherDataSuccess({ result })))
+        this.weatherService.getWeatherInfo(action.location).pipe(
+          map((result) => getWeatherDataSuccess({ result })),
+          catchError(() =>
+            of(
+              showErrorMessage({
+                errorMessage: 'Could not find location. Please specify.',
+              })
+            )
+          )
+        )
       )
     )
   );
@@ -36,7 +45,7 @@ export class WeatherDataEffects {
 
   hideLoading$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(getWeatherDataSuccess),
+      ofType(getWeatherDataSuccess, showErrorMessage),
       map(() => hideProgressSpinner())
     )
   );

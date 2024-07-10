@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { weatherMapper } from '../utils';
 import { Interval } from '../models/interval';
@@ -22,7 +22,6 @@ export class WeatherService {
         ${interval}?unitGroup=metric&include=days%2Ccurrent&key=AWXBV38JZ7D4GFHZUANSZU65X&contentType=json`
       )
       .pipe(
-        // catchError(),
         map((result) => weatherMapper(result)),
         shareReplay()
       );
