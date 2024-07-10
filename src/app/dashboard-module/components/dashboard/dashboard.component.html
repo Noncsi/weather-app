@@ -1,32 +1,38 @@
+<mat-form-field>
+  <div style="text-align: center">
+    <mat-label><strong> Location</strong></mat-label>
+    <input placeholder="Select a location..." matInput #location />
+  </div>
+</mat-form-field>
+
+<button mat-raised-button submit="submit" (click)="submit(location.value)">
+  ->
+</button>
+<p *ngIf="weatherData8Days$ | async as asd">
+  {{ asd?.location }}
+</p>
+<p>{{ today }}</p>
+
 <mat-progress-spinner
   *ngIf="isLoading$ | async"
   mode="indeterminate"
 ></mat-progress-spinner>
 
-<mat-form-field
-  ><input placeholder="Select a location..." matInput #location
-/></mat-form-field>
-
-<button mat-raised-button submit="submit" (click)="submit(location.value)">
-  ->
-</button>
-
 <ng-container
   *ngIf="{
-    weatherData: weatherData$ | async,
-    todaysWeather: todaysWeather$ | async,
+    weatherData: weatherData8Days$ | async,
+    todaysWeather: weatherDataToday$ | async, 
   } as vars"
 >
   <ng-container *ngIf="vars.todaysWeather; else elseBlock">
-    <div class="container">
-      <div class="current-day">
-        <div class="current-degree">
-          <span class="temp">{{ vars.todaysWeather.temperature }}</span>
-          <span class="unit">°C</span>
-        </div>
-        <h2>{{ vars.todaysWeather.shortDescription }}</h2>
+    <div class="current-day">
+      <h2>{{ vars.todaysWeather.shortDescription }}</h2>
+      <div class="current-degree">
+        <span class="temp">{{ vars.todaysWeather.temperature }}</span>
+        <span class="unit">°C</span>
       </div>
-
+    </div>
+    <div class="container">
       <app-day
         *ngFor="let day of vars.weatherData?.dailyWeathers"
         [day]="day"

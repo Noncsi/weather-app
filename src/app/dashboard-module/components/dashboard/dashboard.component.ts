@@ -1,6 +1,6 @@
 import { Observable, tap } from 'rxjs';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DailyWeather } from '../../../models/daily-weather';
+import { DailyWeather as WeatherDataToday } from '../../../models/daily-weather';
 import { select, Store } from '@ngrx/store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
@@ -10,6 +10,7 @@ import {
 } from '../../../state/selectors';
 import { getWeatherData } from '../../../state/actions';
 import { WeatherData } from '../../../models/weather-data';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,24 +19,27 @@ import { WeatherData } from '../../../models/weather-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
-  weatherData$: Observable<WeatherData>;
-  todaysWeather$: Observable<DailyWeather>;
+  today: string | null;
+  weatherData8Days$: Observable<WeatherData>;
+  weatherDataToday$: Observable<WeatherDataToday>;
   isLoading$: Observable<boolean>;
 
-  constructor(private store: Store) {
-    this.weatherData$ = this.store.pipe(
+  constructor(private datePipe: DatePipe, private store: Store) {
+    this.today = this.datePipe.transform(new Date(), 'YYYY. MMMM dd., EEEE');
+
+    this.weatherData8Days$ = this.store.pipe(
       select(selectWeatherData),
+      tap((result) => console.log(result)),
       takeUntilDestroyed()
     );
 
-    this.todaysWeather$ = this.store.pipe(
+    this.weatherDataToday$ = this.store.pipe(
       select(selectTodaysWeatherData),
       takeUntilDestroyed()
     );
 
     this.isLoading$ = this.store.pipe(
       select(selectIsLoading),
-      tap((a) => console.log('isloading:', a)),
       takeUntilDestroyed()
     );
   }

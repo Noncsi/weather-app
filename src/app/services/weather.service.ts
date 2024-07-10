@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { weatherMapper } from '../utils';
 import { Interval } from '../models/interval';

@@ -23,6 +23,7 @@ export const weatherReducer = createReducer(
       ...state,
       weatherData: {
         ...state.weatherData,
+        location: action.result.location,
         dailyWeathers: action.result.dailyWeathers.map((dailyWeather) => ({
           ...dailyWeather,
           tempPosition: {

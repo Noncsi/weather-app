@@ -3,7 +3,7 @@ import { WeatherDataFromApi } from './models/weather-data-from-api';
 
 export function weatherMapper(data: WeatherDataFromApi): WeatherData {
   return {
-    location: data.address,
+    location: data.resolvedAddress,
     dailyWeathers: data.days.map((day) => ({
       dateTime: day.datetime,
       temperature: Math.round(day.temp),

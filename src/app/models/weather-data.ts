@@ -1,6 +1,6 @@
-import { DailyWeather } from './daily-weather';
+import { DailyWeather as DailyWeatherData } from './daily-weather';
 
 export interface WeatherData {
   location: string;
-  dailyWeathers: DailyWeather[];
+  dailyWeathers: DailyWeatherData[];
 }

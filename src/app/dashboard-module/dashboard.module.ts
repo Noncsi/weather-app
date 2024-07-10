@@ -7,14 +7,12 @@ import {
 
 import { AppRoutingModule } from '../app-routing.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { NgStyle } from '@angular/common';
+import { DatePipe, NgStyle } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DayModule } from '../day-module/components/day/day.module';
-import { ProgressSpinnerModule } from '../progress-spinner-module/progress-spinner.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { LocationModule } from '../location-module/location.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -28,10 +26,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    LocationModule,
     MatProgressSpinnerModule,
   ],
   providers: [
+    DatePipe,
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi()),
   ],

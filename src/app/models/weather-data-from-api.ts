@@ -1,5 +1,5 @@
 export interface WeatherDataFromApi {
-  address: string;
+  resolvedAddress: string;
   days: {
     datetime: string;
     temp: number;
