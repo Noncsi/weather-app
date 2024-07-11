@@ -46,17 +46,19 @@
   font-size: 2rem;
 }
 
-mat-form-field {
+.input-field {
   display: flex;
-  width: 30vw;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-left: 8vw;
+  margin-right: 8vw;
 
-  .mdc-text-field--filled {
-    background-color: none;
+  mat-form-field {
+    display: flex;
+    width: 30vw;
+    min-width: 200px;
   }
 
-  input {}
-}
-
-button {
-  max-width: 100px;
+  button {}
 }

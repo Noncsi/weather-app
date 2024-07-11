@@ -1,20 +1,22 @@
-<mat-form-field style="text-align: center">
-  <mat-label><strong> Location</strong></mat-label>
-  <input
-    placeholder="Select a location..."
-    matInput
-    #location
-    (keydown.enter)="submit(location.value)"
-  />
-</mat-form-field>
-
-<button mat-raised-button submit="submit" (click)="submit(location.value)">
-  ->
-</button>
-<p *ngIf="weatherData8Days$ | async as asd">
-  {{ asd?.location }}
-</p>
 <p>{{ today }}</p>
+<div class="input-field">
+  <mat-form-field style="text-align: center">
+    <mat-label><strong> Location</strong></mat-label>
+    <input
+      placeholder="Select a location..."
+      matInput
+      #location
+      (keydown.enter)="submit(location.value)"
+    />
+  </mat-form-field>
+
+  <button mat-raised-button submit="submit" (click)="submit(location.value)">
+    ->
+  </button>
+</div>
+<p *ngIf="weatherData8Days$ | async as loc">
+  {{ loc?.location }}
+</p>
 
 <mat-progress-spinner
   *ngIf="isLoading$ | async"
