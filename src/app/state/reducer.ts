@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   getWeatherDataSuccess,
+  hideErrorMessage,
   hideProgressSpinner,
   showErrorMessage,
   showProgressSpinner,
@@ -44,5 +45,8 @@ export const weatherReducer = createReducer(
   }),
   on(showErrorMessage, (state, action) => {
     return { ...state, errorMessage: action.errorMessage };
+  }),
+  on(hideErrorMessage, (state) => {
+    return { ...state, errorMessage: '' };
   })
 );

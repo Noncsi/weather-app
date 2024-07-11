@@ -5,6 +5,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   getWeatherData,
   getWeatherDataSuccess,
+  hideErrorMessage,
   hideProgressSpinner,
   showErrorMessage,
   showProgressSpinner,
@@ -47,6 +48,13 @@ export class WeatherDataEffects {
     this.actions$.pipe(
       ofType(getWeatherDataSuccess, showErrorMessage),
       map(() => hideProgressSpinner())
+    )
+  );
+
+  hideErrorMessage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getWeatherData),
+      map(() => hideErrorMessage())
     )
   );
 }

@@ -19,3 +19,5 @@ export const showErrorMessage = createAction(
   'showErrorMessage',
   props<{ errorMessage: string }>()
 );
+
+export const hideErrorMessage = createAction('hideErrorMessage');
