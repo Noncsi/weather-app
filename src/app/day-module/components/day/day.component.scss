@@ -1,14 +1,8 @@
-:host {
-  &:first-of-type {
-    grid-column: 4;
-  }
-}
-
 .day {
-  padding: 15px;
-  text-align: center;
-  border-radius: 50px;
   height: 25rem;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 
   .day-of-week {
     font-size: 1.25rem;
@@ -29,6 +23,7 @@
       width: 3rem;
       height: 3rem;
       position: relative;
+      background-color: #ffffff9c;
 
       &.max {
         border: solid #ff5a1a 2px;

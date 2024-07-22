@@ -28,23 +28,14 @@
 
 .container {
   margin-top: 24px;
-  display: grid;
-  gap: 5px;
-  grid-template-columns:
-    [left-margin] auto [now] 15rem [margin] repeat(10, 5rem) [symmetry-col] 15rem [right-margin] auto [end];
-
-
-  .days {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 5px;
-  }
+  display: flex;
+  gap: 24px;
 }
 
 .location {
   font-size: 24px;
   font-weight: bold;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .date {

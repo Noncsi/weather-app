@@ -14,7 +14,7 @@ export class WeatherService {
 
   getWeatherInfo(
     location: string,
-    interval: string = Interval.next7days
+    interval: string = Interval.next15days
   ): Observable<WeatherData> {
     return this.http
       .get<WeatherDataFromApi>(
