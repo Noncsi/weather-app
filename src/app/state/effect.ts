@@ -1,7 +1,7 @@
 import { WeatherService } from './../services/weather.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, delay, map, switchMap } from 'rxjs/operators';
 import {
   getWeatherData,
   getWeatherDataSuccess,
@@ -28,7 +28,7 @@ export class WeatherDataEffects {
           catchError(() =>
             of(
               showErrorMessage({
-                errorMessage: 'Could not find location. Please specify.',
+                errorMessage: 'Could not find location. Please try again.',
               })
             )
           )
@@ -53,7 +53,8 @@ export class WeatherDataEffects {
 
   hideErrorMessage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(getWeatherData),
+      ofType(showErrorMessage),
+      delay(5000),
       map(() => hideErrorMessage())
     )
   );

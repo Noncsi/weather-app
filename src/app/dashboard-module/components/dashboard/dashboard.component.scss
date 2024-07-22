@@ -7,6 +7,7 @@
 .current-day {
   display: flex;
   align-items: center;
+  gap: 32px;
 
   .current-degree {
     display: flex;
@@ -14,19 +15,19 @@
     justify-content: center;
 
     .temp {
-      font-size: 5rem;
+      font-size: 7rem;
       margin: 5rem 0 5rem 0;
     }
 
     .unit {
       font-size: 2rem;
       margin-top: 5rem;
-      margin-bottom: 5rem;
     }
   }
 }
 
 .container {
+  margin-top: 24px;
   display: grid;
   gap: 5px;
   grid-template-columns:
@@ -40,10 +41,25 @@
   }
 }
 
-.no-location-message {
-  margin-top: 10rem;
-  text-align: center;
-  font-size: 2rem;
+.location {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.date {
+  margin-top: 20px;
+  color: #a1a1a1
+}
+
+.description {
+  font-size: 24px;
+}
+
+.divider {
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(315deg, rgba(141, 141, 141, 1) 0%, rgba(221, 221, 221, 1) 40%, rgba(221, 221, 221, 1) 60%, rgba(141, 141, 141, 1) 100%);
 }
 
 .input-field {
@@ -53,12 +69,77 @@
   flex-wrap: wrap;
   margin-left: 8vw;
   margin-right: 8vw;
+}
 
-  mat-form-field {
-    display: flex;
-    width: 30vw;
-    min-width: 200px;
-  }
+.wave-group {
+  position: relative;
+}
 
-  button {}
+.wave-group .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+}
+
+.wave-group .input:focus {
+  outline: none;
+}
+
+.wave-group .label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  display: flex;
+}
+
+.wave-group .label-char {
+  transition: 0.2s ease all;
+  transition-delay: calc(var(--index) * .03s);
+}
+
+.wave-group .input:focus~label .label-char,
+.wave-group .input:valid~label .label-char {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #5264AE;
+}
+
+.wave-group .bar {
+  position: relative;
+  display: block;
+  width: 300px;
+}
+
+.wave-group .bar:before,
+.wave-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+  left: 50%;
+}
+
+.wave-group .bar:after {
+  right: 50%;
+}
+
+.wave-group .input:focus~.bar:before,
+.wave-group .input:focus~.bar:after {
+  width: 50%;
 }

@@ -1,20 +1,30 @@
-<p>{{ today }}</p>
 <div class="input-field">
-  <mat-form-field style="text-align: center">
-    <mat-label><strong> Location</strong></mat-label>
+  <div class="wave-group">
     <input
-      placeholder="Select a location..."
-      matInput
+      required=""
+      type="text"
+      class="input"
       #location
       (keydown.enter)="submit(location.value)"
     />
-  </mat-form-field>
+    <span class="bar"></span>
+    <label class="label">
+      <span class="label-char" style="--index: 0">L</span>
+      <span class="label-char" style="--index: 1">o</span>
+      <span class="label-char" style="--index: 2">c</span>
+      <span class="label-char" style="--index: 3">a</span>
+      <span class="label-char" style="--index: 4">t</span>
+      <span class="label-char" style="--index: 5">i</span>
+      <span class="label-char" style="--index: 6">o</span>
+      <span class="label-char" style="--index: 7">n</span>
+    </label>
+  </div>
 
-  <button mat-raised-button submit="submit" (click)="submit(location.value)">
-    ->
-  </button>
+  <mat-icon (click)="submit(location.value)" fontIcon="search"></mat-icon>
 </div>
-<p *ngIf="weatherData8Days$ | async as loc">
+
+<p class="date">{{ today }}</p>
+<p *ngIf="weatherData8Days$ | async as loc" class="location">
   {{ loc?.location }}
 </p>
 
@@ -31,12 +41,13 @@
 >
   <ng-container *ngIf="vars.todaysWeather; else elseBlock">
     <div class="current-day">
-      <h2>{{ vars.todaysWeather.shortDescription }}</h2>
+      <p class="description">{{ vars.todaysWeather.shortDescription }}</p>
       <div class="current-degree">
         <span class="temp">{{ vars.todaysWeather.temperature }}</span>
         <span class="unit">°C</span>
       </div>
     </div>
+    <div class="divider"></div>
     <div class="container">
       <app-day
         *ngFor="let day of vars.weatherData?.dailyWeathers"
