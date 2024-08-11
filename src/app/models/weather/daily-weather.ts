@@ -1,6 +1,6 @@
-import { TemperaturePosition } from '../day-module/models/temperature-position';
+import { TemperaturePosition } from '../../day-module/models/temperature-position';
 
-export interface DailyWeather {
+export interface IDailyWeather {
   dateTime: string;
   temperature: number;
   temperatureMax: number;

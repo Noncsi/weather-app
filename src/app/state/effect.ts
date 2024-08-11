@@ -1,8 +1,11 @@
+import { LocationService } from './../services/location.service';
 import { WeatherService } from './../services/weather.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, delay, map, switchMap } from 'rxjs/operators';
 import {
+  getLocationSuggestions,
+  getLocationSuggestionsSuccess,
   getWeatherData,
   getWeatherDataSuccess,
   hideErrorMessage,
@@ -16,8 +19,20 @@ import { of } from 'rxjs';
 export class WeatherDataEffects {
   constructor(
     private actions$: Actions,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private locationService: LocationService
   ) {}
+
+  loadLocationSuggestions$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getLocationSuggestions),
+      switchMap((action) =>
+        this.locationService
+          .getLocationSuggestions(action.input)
+          .pipe(map((result) => getLocationSuggestionsSuccess({ result })))
+      )
+    )
+  );
 
   loadWeatherData$ = createEffect(() =>
     this.actions$.pipe(

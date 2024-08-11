@@ -1,5 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { WeatherData } from '../models/weather-data';
+import { IWeatherData } from '../models/weather/weather-data';
+import { ILocationSuggestions } from '../models/location-suggestions/locations-suggestions';
+
+export const getLocationSuggestions = createAction(
+  'getLocationSuggestions',
+  props<{ input: string }>()
+);
+
+export const getLocationSuggestionsSuccess = createAction(
+  'getLocationSuggestionsSuccess',
+  props<{ result: ILocationSuggestions }>()
+);
 
 export const getWeatherData = createAction(
   'getWeatherData',
@@ -8,7 +19,7 @@ export const getWeatherData = createAction(
 
 export const getWeatherDataSuccess = createAction(
   'getWeatherDataSuccess',
-  props<{ result: WeatherData }>()
+  props<{ result: IWeatherData }>()
 );
 
 export const showProgressSpinner = createAction('showProgressSpinner');

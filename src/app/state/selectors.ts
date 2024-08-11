@@ -1,10 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { WeatherData } from '../models/weather-data';
+import { IWeatherData } from '../models/weather/weather-data';
 
 export interface AppState {
-  weatherData: WeatherData;
+  weatherData: IWeatherData;
   isLoading: boolean;
   errorMessage: string;
+  locationOptions: string[];
 }
 
 export const selectState = createFeatureSelector<AppState>('weatherData');
@@ -16,7 +17,7 @@ export const selectWeatherData = createSelector(
 
 export const selectTodaysWeatherData = createSelector(
   selectWeatherData,
-  (weatherData: WeatherData) => weatherData?.dailyWeathers?.[0]
+  (weatherData: IWeatherData) => weatherData?.dailyWeathers?.[0]
 );
 
 export const selectIsLoading = createSelector(
@@ -27,4 +28,9 @@ export const selectIsLoading = createSelector(
 export const selectErrorMessage = createSelector(
   selectState,
   (state: AppState) => state?.errorMessage
+);
+
+export const selectLocationOptions = createSelector(
+  selectState,
+  (state: AppState) => state?.locationOptions
 );

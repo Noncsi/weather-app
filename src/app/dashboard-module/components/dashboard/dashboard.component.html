@@ -1,45 +1,42 @@
-<div class="input-field">
-  <div class="wave-group">
-    <input
-      required=""
-      type="text"
-      class="input"
-      #location
-      (keydown.enter)="submit(location.value)"
-    />
-    <span class="bar"></span>
-    <label class="label">
-      <span class="label-char" style="--index: 0">L</span>
-      <span class="label-char" style="--index: 1">o</span>
-      <span class="label-char" style="--index: 2">c</span>
-      <span class="label-char" style="--index: 3">a</span>
-      <span class="label-char" style="--index: 4">t</span>
-      <span class="label-char" style="--index: 5">i</span>
-      <span class="label-char" style="--index: 6">o</span>
-      <span class="label-char" style="--index: 7">n</span>
-    </label>
-  </div>
-
-  <mat-icon (click)="submit(location.value)" fontIcon="search"></mat-icon>
-</div>
-
-<p class="date">{{ today }}</p>
-<p *ngIf="weatherData8Days$ | async as loc" class="location">
-  {{ loc?.location }}
-</p>
-
-<mat-progress-spinner
-  *ngIf="isLoading$ | async"
-  mode="indeterminate"
-></mat-progress-spinner>
-
 <ng-container
   *ngIf="{
     weatherData: weatherData8Days$ | async,
-    todaysWeather: weatherDataToday$ | async, 
+    todaysWeather: weatherDataToday$ | async,
+    loc: weatherData8Days$ | async,
+    isLoading: isLoading$ | async
   } as vars"
 >
-  <ng-container *ngIf="vars.todaysWeather; else elseBlock">
+  <form>
+    <mat-form-field class="input-field">
+      <mat-label>Location</mat-label>
+      <input
+        type="text"
+        #location
+        matInput
+        [matAutocomplete]="locationAutoComplete"
+        [formControl]="locationForm"
+      />
+      <mat-autocomplete #locationAutoComplete="matAutocomplete">
+        @for (option of options$ | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <mat-icon (click)="submit(location.value)" fontIcon="search"></mat-icon>
+
+  <p class="date">{{ today }}</p>
+  <p *ngIf="vars.loc" class="location">
+    {{ vars.loc.location }}
+  </p>
+
+  <mat-progress-spinner
+    *ngIf="vars.isLoading"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+
+  <ng-container *ngIf="vars.todaysWeather">
     <div class="current-day">
       <p class="description">{{ vars.todaysWeather.shortDescription }}</p>
       <div class="current-degree">
@@ -56,5 +53,3 @@
     </div>
   </ng-container>
 </ng-container>
-
-<ng-template #elseBlock></ng-template>

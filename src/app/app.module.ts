@@ -1,4 +1,3 @@
-import { WeatherData } from './models/weather-data';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {

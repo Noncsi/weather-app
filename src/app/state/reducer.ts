@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  getLocationSuggestionsSuccess,
   getWeatherDataSuccess,
   hideErrorMessage,
   hideProgressSpinner,
@@ -12,6 +13,7 @@ export const initialState: AppState = {
   weatherData: { location: '', dailyWeathers: [] },
   isLoading: false,
   errorMessage: '',
+  locationOptions: [],
 };
 
 export const weatherReducer = createReducer(
@@ -48,5 +50,9 @@ export const weatherReducer = createReducer(
   }),
   on(hideErrorMessage, (state) => {
     return { ...state, errorMessage: '' };
-  })
+  }),
+  on(getLocationSuggestionsSuccess, (state, action) => ({
+    ...state,
+    locationOptions: action.result.locationSuggestions,
+  }))
 );
